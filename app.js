@@ -1,5 +1,6 @@
 const experss = require("express");
 const addMovie = require("./controllers/addMovies");
+require("dotenv").config();
 
 const app = experss();
 
@@ -8,10 +9,7 @@ const mongoose = require("mongoose");
 //connection to mongodb
 
 mongoose
-  .connect(
-    "mongodb+srv://loonslab:loonslab@moviedb.7jrmv.mongodb.net/?retryWrites=true&w=majority&appName=MovieDB",
-    {}
-  )
+  .connect(process.env.mongo_connection, {})
   .then(() => {
     console.log("Connected to mongodb database");
   })
