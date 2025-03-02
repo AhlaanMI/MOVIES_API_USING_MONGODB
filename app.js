@@ -4,6 +4,8 @@ require("dotenv").config();
 
 const app = experss();
 
+app.use(experss.json());
+
 const mongoose = require("mongoose");
 
 //connection to mongodb
@@ -16,6 +18,8 @@ mongoose
   .catch(() => {
     console.log("Connection to mongodb failed");
   });
+
+require("./models/movies.models");
 
 //routes
 

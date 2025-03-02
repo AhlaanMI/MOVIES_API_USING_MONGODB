@@ -1,6 +1,14 @@
 const addMovie = (req, res) => {
+  console.log(req.body);
+
+  const { movie_name, info, rating } = req.body;
+
+  //validations...
+
+  //success response
   res.status(200).json({
-    status: "This is add movie route!",
+    status: "success",
+    message: "Movie added successfully",
   });
 };
 
