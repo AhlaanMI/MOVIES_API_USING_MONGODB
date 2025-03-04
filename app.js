@@ -1,5 +1,7 @@
 const experss = require("express");
 const addMovie = require("./controllers/addMovies");
+const getAllMovies = require("./controllers/getAllMovies");
+const getSingleMovie = require("./controllers/getSingleMovie");
 require("dotenv").config();
 
 const app = experss();
@@ -24,6 +26,8 @@ require("./models/movies.models");
 //routes
 
 app.post("/api/movies", addMovie);
+app.get("/api/movies", getAllMovies);
+app.get("/api/movies/:movie_id", getSingleMovie);
 
 app.listen(8000, () => {
   console.log("Server is running on port 8000");
