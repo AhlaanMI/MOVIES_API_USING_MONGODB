@@ -5,6 +5,8 @@ const addMovie = (req, res) => {
 
   //validations...
 
+  //approach 1 - this one is better chat gpt said
+
   // if (!movie_name || !info || !rating) {
   //   return res.status(400).json({
   //     status: "failed",
@@ -19,6 +21,7 @@ const addMovie = (req, res) => {
   //   });
   // }
 
+  //approach 2
   // using try catch block to handle the error & exceptions
 
   try {
