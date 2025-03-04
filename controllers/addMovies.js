@@ -26,35 +26,21 @@ const addMovie = async (req, res) => {
   //approach 2
   // using try catch block to handle the error & exceptions
 
-  try {
-    if (!movie_name) throw "Movie name is required";
-    if (!info) throw "Movie info is required";
-    if (!rating) throw "Movie rating is required";
-    if (rating > 10 || rating < 0) throw "Rating should be between 0 and 10";
-  } catch (err) {
-    return res.status(400).json({
-      status: "failed",
-      message: err,
-    });
-  }
+  //if (!movie_name) throw "Movie name is required";
+  if (!info) throw "Movie info is required";
+  if (!rating) throw "Movie rating is required";
+  if (rating > 10 || rating < 0) throw "Rating should be between 0 and 10";
 
   //success response
 
-  try {
-    const createMovie = await moviesModel.create({
-      movie_name: movie_name,
-      info: info,
-      rating: rating,
-      Description: Description,
-    });
+  const createMovie = await moviesModel.create({
+    movie_name: movie_name,
+    info: info,
+    rating: rating,
+    Description: Description,
+  });
 
-    console.log(createMovie);
-  } catch (err) {
-    return res.status(500).json({
-      status: "failed",
-      message: err.message,
-    });
-  }
+  //console.log(createMovie);
 
   res.status(200).json({
     status: "success",

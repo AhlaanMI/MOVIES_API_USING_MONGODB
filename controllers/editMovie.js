@@ -5,38 +5,22 @@ const editMovie = async (req, res) => {
 
   const { movie_id, movie_name, rating, info, description } = req.body;
 
-  try {
-    if (!movie_id) throw "Movie ID is required";
-  } catch (e) {
-    res.status(400).json({
-      status: "Failed",
-      data: e,
-    });
-    return;
-  }
+  if (!movie_id) throw "Movie ID is required";
 
-  try {
-    await moviesModel.updateOne(
-      {
-        _id: movie_id,
-      },
-      {
-        movie_name: movie_name,
-        rating: rating,
-        info: info,
-        description: description,
-      },
-      {
-        runValidators: true,
-      }
-    );
-  } catch (e) {
-    res.status(400).json({
-      status: "Failed to edit movie",
-      data: e.message,
-    });
-    return;
-  }
+  await moviesModel.updateOne(
+    {
+      _id: movie_id,
+    },
+    {
+      movie_name: movie_name,
+      rating: rating,
+      info: info,
+      description: description,
+    },
+    {
+      runValidators: true,
+    }
+  );
 
   res.status(200).json({
     status: "Success",
