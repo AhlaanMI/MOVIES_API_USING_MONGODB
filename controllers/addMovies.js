@@ -1,7 +1,9 @@
-const addMovie = (req, res) => {
-  console.log(req.body);
+const mongoose = require("mongoose");
 
-  const { movie_name, info, rating } = req.body;
+const addMovie = async (req, res) => {
+  const moviesModel = mongoose.model("movies");
+
+  const { movie_name, info, rating, Description } = req.body;
 
   //validations...
 
@@ -37,6 +39,23 @@ const addMovie = (req, res) => {
   }
 
   //success response
+
+  try {
+    const createMovie = await moviesModel.create({
+      movie_name: movie_name,
+      info: info,
+      rating: rating,
+      Description: Description,
+    });
+
+    console.log(createMovie);
+  } catch (err) {
+    return res.status(500).json({
+      status: "failed",
+      message: err.message,
+    });
+  }
+
   res.status(200).json({
     status: "success",
     message: "Movie added successfully",
